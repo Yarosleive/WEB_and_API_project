@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Добавить работу</h1>
+<form action="film" method="post" enctype="multipart/form-data">
+    {{ form.csrf_token }}
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.name.label }}<br>
+        {{ form.name(class="form-control") }}<br>
+        {% for error in form.name.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.genre.label }}<br>
+        {{ form.genre(class="form-control") }}<br>
+        {% for error in form.genre.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.year.label }}<br>
+        {{ form.year(class="form-control") }}<br>
+        {% for error in form.year.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.director.label }}<br>
+        {{ form.director(class="form-control") }}<br>
+        {% for error in form.director.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.rating.label }}<br>
+        {{ form.rating(class="form-control") }}<br>
+        {% for error in form.rating.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p> 
+    <p>
+        {{ form.logo.label }}<br>
+        {{ form.logo(class="form-control", type='file') }}<br>
+        {% for error in form.logo.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p> 
+    {% if form.logo.data %}
+    <div>
+        <img src='{{ logo_path }}'/>
+    </div>
+    {% endif %}
+    <p>{{ form.errors }}</p>
+    <p> {{ form.submit(type="submit", class="btn btn-primary") }}
+    {% for error in form.submit.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+</form> 
+    {% endblock %}
